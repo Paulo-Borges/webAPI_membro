@@ -1,9 +1,11 @@
-﻿using webAPI_membro.Enums;
+﻿using System.ComponentModel.DataAnnotations;
+using webAPI_membro.Enums;
 
 namespace webAPI_membro.Models
 {
     public class MemboModel
     {
+        [Key]
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Sobrenome { get; set; }
