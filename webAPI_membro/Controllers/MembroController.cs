@@ -22,10 +22,34 @@ namespace webAPI_membro.Controllers
             return Ok( await _membroInterface.GetMembros());
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ServiceResponse<MemboModel>>> GetMembroById(int id)
+        {
+            ServiceResponse<MemboModel> serviceResponse = await _membroInterface.GetMembroById(id);
+
+            return Ok(serviceResponse);
+        }
+
         [HttpPost]
         public async Task<ActionResult<ServiceResponse<List<MemboModel>>>> CreateMembro(MemboModel novoMembro)
         {
             return Ok(await _membroInterface.CreateMembro(novoMembro));
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<ServiceResponse<List<MemboModel>>>> UpdateMembro(MemboModel editadoMembro)
+        {
+            ServiceResponse<List<MemboModel>> serviceResponse = await _membroInterface.UpdateMembro(editadoMembro);
+
+            return Ok(serviceResponse);
+        }
+
+        [HttpPut ("inativaMembro")]
+        public async Task<ActionResult<ServiceResponse<List<MemboModel>>>> InativaMembro(int id)
+        {
+            ServiceResponse<List<MemboModel>> serviceResponse = await _membroInterface.InativaMembro(id);
+
+            return Ok(serviceResponse);
         }
     }
 }

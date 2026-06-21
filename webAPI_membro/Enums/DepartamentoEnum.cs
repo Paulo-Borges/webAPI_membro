@@ -1,5 +1,8 @@
-﻿namespace webAPI_membro.Enums
+﻿using System.Text.Json.Serialization;
+
+namespace webAPI_membro.Enums
 {
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum DepartamentoEnum
     {
         Pastor,
