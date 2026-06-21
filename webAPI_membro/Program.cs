@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using webAPI_membro.DataContext;
+using webAPI_membro.Service.membroService;
+using webAPI_membro.Service.MembroService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IMembroInterface, MembroService>();
 
 // Essa parte pra conectar ao banco de dados.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
