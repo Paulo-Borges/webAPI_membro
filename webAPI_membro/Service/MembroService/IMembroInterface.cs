@@ -15,7 +15,7 @@ namespace webAPI_membro.Service.MembroService
         Task<ServiceResponse<List<MemboModel>>> CreateMembro(MemboModel novoMembro);
 
         //task pra metodos assincronos  // retorna o ServiceResponse // e retorna um membroModel por id
-        Task<ServiceResponse<MemboModel>> GetmembroById(int id);
+        Task<ServiceResponse<MemboModel>> GetMembroById(int id);
 
         //Task pra metodos assincrono   // retorna a Model ServiceResponse  
         // e retorna uma lista de membroModel  // e o nome do metodo mas recebe um parametro e edita um novo

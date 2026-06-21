@@ -12,9 +12,34 @@ namespace webAPI_membro.Service.membroService
             _context = context;
         }
 
-        public Task<ServiceResponse<List<MemboModel>>> CreateMembro(MemboModel novoMembro)
+        public async Task<ServiceResponse<List<MemboModel>>> CreateMembro(MemboModel novoMembro)
         {
-            throw new NotImplementedException();
+            ServiceResponse<List<MemboModel>> serviceResponse = new ServiceResponse<List<MemboModel>>();
+
+            try
+            {
+
+                if(novoMembro == null)
+                {
+                    serviceResponse.Dados = null;
+                    serviceResponse.Mensagem = "Informar Dados!";
+                    serviceResponse.Sucesso = false;
+
+                    return serviceResponse;
+                }
+
+                _context.Add(novoMembro);
+                await _context.SaveChangesAsync();
+
+                serviceResponse.Dados = _context.Membros.ToList();
+
+            }
+            catch (Exception ex)
+            {
+                serviceResponse.Mensagem = ex.Message;
+                serviceResponse.Sucesso = false;
+            }
+            return serviceResponse;
         }
 
         public Task<ServiceResponse<List<MemboModel>>> DeleteMembro(int id)
@@ -22,7 +47,7 @@ namespace webAPI_membro.Service.membroService
             throw new NotImplementedException();
         }
 
-        public Task<ServiceResponse<MemboModel>> GetmembroById(int id)
+        public Task<ServiceResponse<MemboModel>> GetMembroById(int id)
         {
             throw new NotImplementedException();
         }

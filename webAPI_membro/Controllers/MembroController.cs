@@ -21,5 +21,11 @@ namespace webAPI_membro.Controllers
         {
             return Ok( await _membroInterface.GetMembros());
         }
+
+        [HttpPost]
+        public async Task<ActionResult<ServiceResponse<List<MemboModel>>>> CreateMembro(MemboModel novoMembro)
+        {
+            return Ok(await _membroInterface.CreateMembro(novoMembro));
+        }
     }
 }
