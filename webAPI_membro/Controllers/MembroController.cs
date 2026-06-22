@@ -51,5 +51,14 @@ namespace webAPI_membro.Controllers
 
             return Ok(serviceResponse);
         }
+
+        [HttpDelete]
+        public async Task<ActionResult<ServiceResponse<List<MemboModel>>>> DeleteMembro(int id)
+        {
+            ServiceResponse<List<MemboModel>> serviceResponse = await _membroInterface.DeleteMembro(id);
+
+            return Ok(serviceResponse);
+        }
+
     }
 }

@@ -43,9 +43,33 @@ namespace webAPI_membro.Service.membroService
             return serviceResponse;
         }
 
-        public Task<ServiceResponse<List<MemboModel>>> DeleteMembro(int id)
+        public async Task<ServiceResponse<List<MemboModel>>> DeleteMembro(int id)
         {
-            throw new NotImplementedException();
+            ServiceResponse<List<MemboModel>> serviceResponse = new ServiceResponse<List<MemboModel>>();
+
+            try
+            {
+                MemboModel membro = _context.Membros.FirstOrDefault(x => x.Id == id);
+
+                if(membro == null)
+                {
+                    serviceResponse.Dados = null;
+                    serviceResponse.Mensagem = "Usuário não encontrado!";
+                    serviceResponse.Sucesso = false;
+
+                    return serviceResponse;
+                }
+
+                _context.Membros.Remove(membro);
+                await _context.SaveChangesAsync();
+
+            }catch(Exception ex)
+            {
+
+                serviceResponse.Mensagem = ex.Message;
+                serviceResponse.Sucesso = false;
+            }
+            return serviceResponse;
         }
 
         public async Task<ServiceResponse<MemboModel>> GetMembroById(int id)
